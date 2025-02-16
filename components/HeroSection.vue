@@ -35,7 +35,7 @@ const heroHeightClass = computed(() => {
     case 'full':
       return 'min-h-screen'
     case 'half':
-      return 'py-32'
+      return 'py-40'
     default:
       return ''
   }
