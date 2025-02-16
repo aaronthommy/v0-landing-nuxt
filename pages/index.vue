@@ -3,6 +3,7 @@
     <AppHeader />
     <main class="flex-grow">
       <HeroSection
+        heroHeight="full"
         title="Willkommen auf meiner Startseite"
         subtitle="Perfekt für dein nächstes Projekt!"
         buttonLabel="Jetzt starten"
