@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative bg-center bg-no-repeat bg-cover flex items-center justify-center text-white py-32"
+    class="relative bg-center bg-no-repeat bg-cover flex items-center justify-center text-white py-32 backdrop-opacity-60"
     :style="
       backgroundImage ? `background-image: url('${backgroundImage}')` : ''
     "

@@ -6,8 +6,9 @@
           title="Kontaktieren Sie uns"
           subtitle="Wir freuen uns, von Ihnen zu hören!"
           buttonLabel="E-Mail"
-          backgroundImage="/img/office-image.jpg"
+          backgroundImage="/img/contact.png"
         />
+        <TestimonialsSection/>
       </main>
       <AppFooter />
     </div>

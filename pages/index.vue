@@ -6,7 +6,7 @@
         title="Willkommen auf meiner Startseite"
         subtitle="Perfekt für dein nächstes Projekt!"
         buttonLabel="Jetzt starten"
-        backgroundImage="/img/office-image.jpg"
+        backgroundImage="/img/office-image.png"
       />
       <FeaturesSection />
       <TestimonialsSection />

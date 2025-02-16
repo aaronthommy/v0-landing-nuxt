@@ -18,7 +18,7 @@
             <h4 class="text-lg font-semibold mb-4">Support</h4>
             <ul class="space-y-2">
               <li><NuxtLink to="#" class="text-gray-400 hover:text-white">FAQ</NuxtLink></li>
-              <li><NuxtLink to="#" class="text-gray-400 hover:text-white">Contact Us</NuxtLink></li>
+              <li><NuxtLink to="/contact" class="text-gray-400 hover:text-white">Contact Us</NuxtLink></li>
               <li><NuxtLink to="#" class="text-gray-400 hover:text-white">Privacy Policy</NuxtLink></li>
             </ul>
           </div>
