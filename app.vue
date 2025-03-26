@@ -13,5 +13,7 @@ useHead({
 </script>
 
 <template>
+  <AppHeader />
   <NuxtPage />
+  <AppFooter />
 </template>

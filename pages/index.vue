@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <AppHeader />
     <main class="flex-grow">
       <HeroSection
         heroHeight="full"
@@ -14,7 +13,6 @@
       <PricingSection />
       <CallToAction />
     </main>
-    <AppFooter />
   </div>
 </template>
 

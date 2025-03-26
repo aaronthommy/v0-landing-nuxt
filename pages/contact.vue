@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <AppHeader />
     <main class="flex-grow">
       <HeroSection
         heroHeight="half"
@@ -11,7 +10,6 @@
       />
       <TestimonialsSection />
     </main>
-    <AppFooter />
   </div>
 </template>
 
