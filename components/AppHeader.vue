@@ -1,120 +1,108 @@
 <template>
-  <header
-    class="
-      absolute top-0 left-0 w-full z-50
-      flex items-center
-      h-16
-      px-4
-      transition-colors
-    "
-    :class="darkMode ? 'bg-transparent text-white' : 'bg-transparent text-black'"
-  >
-    <div class="container mx-auto flex items-center justify-between">
-      <!-- Logo/Brand -->
-      <NuxtLink to="/" class="text-xl font-bold">
-        MyPortfolio
+  <header class="flex items-center justify-between p-4 bg-white shadow relative">
+    <!-- Logo / Branding -->
+    <div class="logo">
+      <NuxtLink to="/" class="text-2xl font-bold text-gray-900">
+        aaronthommy
       </NuxtLink>
-
-      <!-- Desktop Navigation (hidden auf mobile) -->
-      <nav class="hidden md:flex items-center space-x-6">
-        <NuxtLink to="/blogs">Blogs</NuxtLink>
-        <NuxtLink to="/projects">Projects</NuxtLink>
-        <NuxtLink to="/courses">Courses</NuxtLink>
-        <NuxtLink to="/software">Software</NuxtLink>
-        <NuxtLink to="/about">About</NuxtLink>
-
-        <!-- Sprachumschalter (Flaggen als Platzhalter) -->
-        <div class="flex items-center space-x-2">
-          <button @click="language = 'de'"><img src="/icons/flag-de.png" alt="Deutsch" class="w-6 h-6" /></button>
-          <button @click="language = 'en'"><img src="/icons/flag-en.png" alt="English" class="w-6 h-6" /></button>
-        </div>
-
-        <!-- Dark/Light Switch -->
-        <button
-          class="border px-2 py-1 rounded"
-          @click="toggleDarkMode"
-        >
-          {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
-        </button>
-      </nav>
-
-      <!-- Hamburger Icon (nur sichtbar auf Mobile) -->
-      <button
-        class="md:hidden"
-        @click="toggleMobileMenu"
-      >
-        <!-- Einfacher "Hamburger" (3 Balken) -->
-        <div class="w-6 h-0.5 bg-current mb-1"></div>
-        <div class="w-6 h-0.5 bg-current mb-1"></div>
-        <div class="w-6 h-0.5 bg-current"></div>
+    </div>
+    
+    <!-- Desktop-Navigation (ab md sichtbar) -->
+    <nav class="hidden md:flex">
+      <ul class="flex space-x-6">
+        <li>
+          <NuxtLink to="/" class="text-gray-700 hover:text-blue-500">
+            Home
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/about" class="text-gray-700 hover:text-blue-500">
+            Über mich
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/offers" class="text-gray-700 hover:text-blue-500">
+            Angebote
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/social" class="text-gray-700 hover:text-blue-500">
+            Social Media
+          </NuxtLink>
+        </li>
+      </ul>
+    </nav>
+    
+    <!-- Aktionen / Platzhalter für Sprache und Darkmode sowie Hamburger-Button -->
+    <div class="flex items-center space-x-4">
+      <!-- Platzhalter für Sprachumschalter -->
+      <button class="text-gray-700 hover:text-blue-500 focus:outline-none">
+        Lang
+      </button>
+      <!-- Platzhalter für Darkmode Toggle -->
+      <button class="text-gray-700 hover:text-blue-500 focus:outline-none">
+        Dark
+      </button>
+      <!-- Hamburger-Menü, nur auf mobilen Geräten (unter md) -->
+      <button class="md:hidden text-2xl focus:outline-none" @click="toggleMobileMenu">
+        <span v-if="isMobileMenuOpen">✕</span>
+        <span v-else>☰</span>
       </button>
     </div>
-
-    <!-- Mobile Navigation Overlay -->
-    <transition name="fade">
-      <div
-        v-if="mobileMenuOpen"
-        class="fixed inset-0 bg-black bg-opacity-80 flex flex-col items-center justify-center text-white space-y-6 z-40"
-      >
-        <NuxtLink to="/blogs" @click="closeMobileMenu">Blogs</NuxtLink>
-        <NuxtLink to="/projects" @click="closeMobileMenu">Projects</NuxtLink>
-        <NuxtLink to="/courses" @click="closeMobileMenu">Courses</NuxtLink>
-        <NuxtLink to="/software" @click="closeMobileMenu">Software</NuxtLink>
-        <NuxtLink to="/about" @click="closeMobileMenu">About</NuxtLink>
-
-        <!-- Sprachumschalter -->
-        <div class="flex space-x-4">
-          <button @click="language = 'de'">
-            <img src="/icons/flag-de.png" alt="Deutsch" class="w-6 h-6" />
-          </button>
-          <button @click="language = 'en'">
-            <img src="/icons/flag-en.png" alt="English" class="w-6 h-6" />
-          </button>
-        </div>
-
-        <!-- Dark/Light Switch -->
-        <button
-          class="border px-4 py-2 rounded"
-          @click="toggleDarkMode"
-        >
-          {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
-        </button>
-      </div>
+    
+    <!-- Mobile Navigation mit Transition -->
+    <transition name="slide-fade">
+      <nav v-if="isMobileMenuOpen" class="absolute top-full left-0 right-0 bg-white shadow-md md:hidden">
+        <ul class="flex flex-col space-y-4 p-4">
+          <li>
+            <NuxtLink to="/" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
+              Home
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/about" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
+              Über mich
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/offers" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
+              Angebote
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/social" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
+              Social Media
+            </NuxtLink>
+          </li>
+        </ul>
+      </nav>
     </transition>
   </header>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { NuxtLink } from '#components'
+import { ref } from "vue";
 
-// Local State (DEMO): darkMode, language, mobileMenu
-const darkMode = ref(false)
-const language = ref('en')
-const mobileMenuOpen = ref(false)
-
-// Umschalten Dark/Light
-function toggleDarkMode() {
-  darkMode.value = !darkMode.value
-}
-
-// Umschalten Mobile-Menü
-function toggleMobileMenu() {
-  mobileMenuOpen.value = !mobileMenuOpen.value
-}
-
-function closeMobileMenu() {
-  mobileMenuOpen.value = false
-}
+const isMobileMenuOpen = ref(false);
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
 </script>
 
 <style scoped>
-/* Beispiel einer einfachen Fade-Transition */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s;
+/* Transition-Klassen für Slide-Fade */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
 }
-.fade-enter-from, .fade-leave-to {
+.slide-fade-enter-from,
+.slide-fade-leave-to {
   opacity: 0;
+  transform: translateY(-10px);
+}
+.slide-fade-enter-to,
+.slide-fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

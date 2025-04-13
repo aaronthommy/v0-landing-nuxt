@@ -15,5 +15,4 @@ useHead({
 <template>
   <AppHeader />
   <NuxtPage />
-
 </template>
