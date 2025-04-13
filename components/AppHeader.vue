@@ -1,108 +1,183 @@
 <template>
-  <header class="flex items-center justify-between p-4 bg-white shadow relative">
-    <!-- Logo / Branding -->
-    <div class="logo">
-      <NuxtLink to="/" class="text-2xl font-bold text-gray-900">
-        aaronthommy
-      </NuxtLink>
-    </div>
-    
-    <!-- Desktop-Navigation (ab md sichtbar) -->
-    <nav class="hidden md:flex">
-      <ul class="flex space-x-6">
-        <li>
-          <NuxtLink to="/" class="text-gray-700 hover:text-blue-500">
-            Home
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/about" class="text-gray-700 hover:text-blue-500">
-            Über mich
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/offers" class="text-gray-700 hover:text-blue-500">
-            Angebote
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="/social" class="text-gray-700 hover:text-blue-500">
-            Social Media
-          </NuxtLink>
-        </li>
-      </ul>
-    </nav>
-    
-    <!-- Aktionen / Platzhalter für Sprache und Darkmode sowie Hamburger-Button -->
-    <div class="flex items-center space-x-4">
-      <!-- Platzhalter für Sprachumschalter -->
-      <button class="text-gray-700 hover:text-blue-500 focus:outline-none">
-        Lang
-      </button>
-      <!-- Platzhalter für Darkmode Toggle -->
-      <button class="text-gray-700 hover:text-blue-500 focus:outline-none">
-        Dark
-      </button>
-      <!-- Hamburger-Menü, nur auf mobilen Geräten (unter md) -->
-      <button class="md:hidden text-2xl focus:outline-none" @click="toggleMobileMenu">
-        <span v-if="isMobileMenuOpen">✕</span>
-        <span v-else>☰</span>
-      </button>
-    </div>
-    
-    <!-- Mobile Navigation mit Transition -->
-    <transition name="slide-fade">
-      <nav v-if="isMobileMenuOpen" class="absolute top-full left-0 right-0 bg-white shadow-md md:hidden">
-        <ul class="flex flex-col space-y-4 p-4">
-          <li>
-            <NuxtLink to="/" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
-              Home
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/about" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
-              Über mich
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/offers" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
-              Angebote
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/social" @click="toggleMobileMenu" class="text-gray-700 hover:text-blue-500">
-              Social Media
+  <header 
+    class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 transition-all duration-300"
+    :class="{ 'shadow-sm': scrolled || isMobileMenuOpen }"
+  >
+    <div class="container mx-auto px-6 py-5 flex items-center justify-between">
+      <!-- Logo mit subtiler Animation -->
+      <div class="logo">
+        <NuxtLink to="/" class="text-2xl font-bold text-gray-900 hover:text-blue-500 transition-colors">
+          aaron<span class="text-blue-500 hover:text-gray-900 transition-colors">thommy</span>
+        </NuxtLink>
+      </div>
+      
+      <!-- Desktop-Navigation mit eleganten Hover-Effekten -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-8">
+          <li v-for="(item, index) in navItems" :key="index">
+            <NuxtLink 
+              :to="item.path" 
+              class="relative py-2 font-medium transition-colors"
+              :class="[
+                isActive(item.path) ? 'text-blue-500' : 'text-gray-700 hover:text-blue-500',
+                'nav-link'
+              ]"
+            >
+              {{ item.label }}
             </NuxtLink>
           </li>
         </ul>
       </nav>
+      
+      <!-- Aktionen mit besseren Iconbuttons -->
+      <div class="flex items-center space-x-5">
+        <!-- Sprachumschalter mit Icon -->
+        <button class="text-gray-700 hover:text-blue-500 focus:outline-none transition-colors p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+          </svg>
+        </button>
+        
+        <!-- Darkmode Toggle mit Icon -->
+        <button class="text-gray-700 hover:text-blue-500 focus:outline-none transition-colors p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+        </button>
+        
+        <!-- Hamburger-Button, eleganter und mit Animation -->
+        <button 
+          class="text-gray-700 hover:text-blue-500 focus:outline-none md:hidden relative w-6 h-6"
+          aria-label="Menu"
+          @click="toggleMobileMenu"
+        >
+          <div class="absolute inset-0">
+            <span 
+              class="absolute top-1/2 left-0 w-full h-0.5 bg-current transform transition-all duration-300"
+              :class="isMobileMenuOpen ? 'rotate-45' : '-translate-y-1.5'"
+            ></span>
+            <span 
+              class="absolute top-1/2 left-0 w-full h-0.5 bg-current transform transition-opacity duration-300"
+              :class="isMobileMenuOpen ? 'opacity-0' : 'opacity-100'"
+            ></span>
+            <span 
+              class="absolute top-1/2 left-0 w-full h-0.5 bg-current transform transition-all duration-300"
+              :class="isMobileMenuOpen ? '-rotate-45' : 'translate-y-1.5'"
+            ></span>
+          </div>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Verbesserte Mobile Navigation mit eleganter Animation -->
+    <transition 
+      enter-active-class="transition duration-300 ease-out" 
+      enter-from-class="transform -translate-y-8 opacity-0" 
+      enter-to-class="transform translate-y-0 opacity-100"
+      leave-active-class="transition duration-200 ease-in" 
+      leave-from-class="transform translate-y-0 opacity-100" 
+      leave-to-class="transform -translate-y-8 opacity-0"
+    >
+      <div v-if="isMobileMenuOpen" class="md:hidden bg-white shadow-lg">
+        <nav class="container mx-auto py-6 px-6">
+          <ul class="space-y-6">
+            <li v-for="(item, index) in navItems" :key="index">
+              <NuxtLink 
+                :to="item.path" 
+                @click="toggleMobileMenu" 
+                class="text-xl font-medium block transition-colors"
+                :class="isActive(item.path) ? 'text-blue-500' : 'text-gray-800 hover:text-blue-500'"
+              >
+                {{ item.label }}
+              </NuxtLink>
+            </li>
+          </ul>
+          
+          <!-- Social Media Icons in Mobile Menu -->
+          <div class="mt-8 pt-6 border-t border-gray-100">
+            <div class="flex space-x-5">
+              <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-blue-500 transition-colors">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z" clip-rule="evenodd" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
     </transition>
   </header>
+  
+  <!-- Platzhalter für Header, um Layout-Verschiebungen zu vermeiden -->
+  <div class="h-16"></div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const isMobileMenuOpen = ref(false);
+const scrolled = ref(false);
+
+// Navigation Items für einfache Verwaltung
+const navItems = [
+  { label: "Home", path: "/" },
+  { label: "Über mich", path: "/about" },
+  { label: "Angebote", path: "/offers" },
+  { label: "Social Media", path: "/social" }
+];
+
+// Überprüft, ob der aktuelle Pfad aktiv ist
+const isActive = (path) => {
+  return route.path === path;
+};
+
+// Toggle für Mobile Menu
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+
+// Scroll-Event für Header-Schatten
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+const handleScroll = () => {
+  scrolled.value = window.scrollY > 10;
 };
 </script>
 
 <style scoped>
-/* Transition-Klassen für Slide-Fade */
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.3s ease;
+/* Elegante Unterstrich-Animation für Desktop-Navigation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
 }
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-.slide-fade-enter-to,
-.slide-fade-leave-from {
-  opacity: 1;
-  transform: translateY(0);
+
+.nav-link:hover::after,
+.nav-link.router-link-active::after {
+  width: 100%;
 }
 </style>

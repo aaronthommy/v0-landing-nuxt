@@ -1,70 +1,99 @@
 <template>
-    <div :class="boxClasses" :style="boxStyle">
-      <!-- Optionales Overlay für den Hintergrund, falls bgImage gesetzt ist -->
-      <div class="bg-overlay" v-if="bgImage"></div>
-      <div class="relative z-10">
-        <!-- Titel wird per v-html ausgegeben, sodass du beispielsweise <br> einfügen kannst -->
-        <h2 v-if="title" :class="titleClass" v-html="title"></h2>
-        <p v-if="text" :class="textClass">{{ text }}</p>
+  <div 
+    :class="[
+      'relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md', 
+      bgColor || 'bg-white',
+      sizeClasses,
+      className
+    ]" 
+    :style="boxStyle"
+  >
+    <!-- Hintergrundbild mit Overlay wenn vorhanden -->
+    <div v-if="bgImage" class="absolute inset-0 w-full h-full">
+      <img :src="bgImage" alt="" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+    </div>
+    
+    <!-- Inhalt -->
+    <div class="relative z-10 p-6 md:p-8 h-full flex flex-col">
+      <h2 
+        v-if="title" 
+        class="font-bold mb-4" 
+        :class="[
+          titleClass || 'text-2xl md:text-3xl',
+          bgImage ? 'text-white' : 'text-gray-900'
+        ]" 
+        v-html="title"
+      ></h2>
+      
+      <p 
+        v-if="text" 
+        class="mb-6" 
+        :class="[
+          textClass || 'text-base md:text-lg',
+          bgImage ? 'text-gray-100' : 'text-gray-600'
+        ]"
+      >
+        {{ text }}
+      </p>
+      
+      <div class="mt-auto">
         <NuxtLink
           v-if="link"
           :to="link"
-          class="mt-2 inline-block px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600"
+          class="inline-flex items-center group"
+          :class="bgImage ? 'text-white' : 'text-blue-600'"
         >
-          {{ linkText }}
+          <span>{{ linkText }}</span>
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-5 w-5 ml-2 transform transition-transform group-hover:translate-x-1" 
+            fill="none" viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
         </NuxtLink>
-        <slot />
       </div>
+      
+      <slot></slot>
     </div>
-  </template>
-  
-  <script setup>
-  import { computed } from "vue";
-  
-  const props = defineProps({
-    title: { type: String, default: "" },
-    text: { type: String, default: "" },
-    link: { type: String, default: "" },
-    linkText: { type: String, default: "Mehr erfahren" },
-    size: { type: String, default: "M" }, // S, M, L, Q (Small, Medium, Large, Square)
-    bgImage: { type: String, default: "" },
-    customHeight: { type: String, default: "" },
-    // Neue Props für individuelle Klassen (optional)
-    titleClass: { type: String, default: "text-3xl font-bold mb-2" },
-    textClass: { type: String, default: "text-gray-700 text-base" }
-  });
-  
-  const boxClasses = computed(() => {
-    let base = "relative overflow-hidden rounded-lg shadow p-4 text-center transition-transform hover:-translate-y-1";
-  
-    if (props.size === 'Q') {
-      // Quadrat: Wir nutzen aspect-square.
-      // Zusätzlich setzen wir z. B. eine Breite (w-full oder eine feste Breite, falls gewünscht)
-      return base + " w-full aspect-square";
-    } else if (props.size === 'S') {
-      return base + " h-[40vh]"; // Kleine Box: halbe Viewporthöhe
-    } else if (props.size === 'L') {
-      return base + " h-[80vh]"; // Große Box: volle Viewporthöhe
-    }
-    // Default (z. B. für 'M'):
-    return base + " h-[38vh]";
-  });
-  
-  
-  const boxStyle = computed(() => {
-    return props.customHeight ? { height: props.customHeight } : {};
-  });
-  </script>
-  
-  <style scoped>
-  .bg-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    z-index: 5;
+  </div>
+</template>
+
+<script setup>
+import { computed } from "vue";
+
+const props = defineProps({
+  title: { type: String, default: "" },
+  text: { type: String, default: "" },
+  link: { type: String, default: "" },
+  linkText: { type: String, default: "Mehr erfahren" },
+  size: { type: String, default: "M" }, // S, M, L, Q (Small, Medium, Large, Square)
+  bgImage: { type: String, default: "" },
+  bgColor: { type: String, default: "" },
+  customHeight: { type: String, default: "" },
+  titleClass: { type: String, default: "" },
+  textClass: { type: String, default: "" },
+  className: { type: String, default: "" }
+});
+
+const sizeClasses = computed(() => {
+  switch (props.size) {
+    case 'S':
+      return 'h-48 md:h-56';
+    case 'M':
+      return 'h-64 md:h-72';
+    case 'L':
+      return 'h-80 md:h-96';
+    case 'Q':
+      return 'aspect-square';
+    default:
+      return 'h-64 md:h-72';
   }
-  </style>
-  
+});
+
+const boxStyle = computed(() => {
+  return props.customHeight ? { height: props.customHeight } : {};
+});
+</script>
