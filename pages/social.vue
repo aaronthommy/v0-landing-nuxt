@@ -239,11 +239,6 @@ const videos = ref([
     title: "Killer Queen Guitar Solo",
   },
   {
-    url: "https://www.tiktok.com/@aaronthommy/video/7416417833900363041",
-    platform: "tiktok",
-    title: "Guitar Performance",
-  },
-  {
     url: "https://www.tiktok.com/@aaronthommy/video/7472101611305766166",
     platform: "tiktok",
     title: "Nothing Else Matters Guitar Solo",
