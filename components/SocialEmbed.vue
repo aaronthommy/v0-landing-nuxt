@@ -1,8 +1,8 @@
 <template>
-  <div class="social-embed-container relative w-full bg-gray-50 rounded-xl overflow-hidden">
+  <div class="social-embed-container relative w-full bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden">
     <!-- Loading Spinner -->
-    <div v-if="loading" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-80 z-30">
-      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    <div v-if="loading" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 z-30">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 dark:border-blue-400"></div>
     </div>
 
     <!-- TikTok/Instagram Embed Container -->
@@ -10,12 +10,13 @@
       <!-- Der Embed-Code wird hier eingefügt -->
     </div>
 
-    
+   
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch, computed, onBeforeUnmount } from 'vue';
+import { useThemeStore } from '~/stores/themeStore';
 
 const props = defineProps({
   videoUrl: {
@@ -33,6 +34,7 @@ const embedContainer = ref(null);
 const videoIdExtracted = ref(null);
 const scriptAdded = ref(false);
 const embedScriptId = ref('');
+const themeStore = useThemeStore();
 
 // Ermittelt, ob es sich um TikTok oder Instagram handelt
 const platform = computed(() => {
@@ -106,7 +108,7 @@ const loadTikTokEmbed = (videoId) => {
   // Erstelle das TikTok Embed HTML
   embedContainer.value.innerHTML = `
     <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@aaronthommy/video/${videoId}" 
-      data-video-id="${videoId}" style="max-width: 605px; min-width: 325px; margin: 0 auto;">
+      data-video-id="${videoId}" data-theme="${themeStore.isDark ? 'dark' : 'light'}" style="max-width: 605px; min-width: 325px; margin: 0 auto;">
       <section></section>
     </blockquote>
   `;
@@ -144,12 +146,12 @@ const loadInstagramEmbed = (videoId) => {
   embedContainer.value.innerHTML = '';
 
   // Erstelle das Instagram Embed HTML - wir verwenden den vollständigen Embed-Code
-  // mit der korrekten Video-ID
+  // mit der korrekten Video-ID und dem richtigen Theme
   embedContainer.value.innerHTML = `
     <blockquote class="instagram-media" data-instgrm-captioned 
       data-instgrm-permalink="https://www.instagram.com/reel/${videoId}/"
-      data-instgrm-version="14" 
-      style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); 
+      data-instgrm-version="14" data-instgrm-theme="${themeStore.isDark ? 'dark' : 'light'}"
+      style="background:${themeStore.isDark ? '#000' : '#FFF'}; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); 
       margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:calc(100% - 2px); margin: 0 auto;">
     </blockquote>
   `;
@@ -201,8 +203,8 @@ const loadEmbed = () => {
   }
 };
 
-// Beobachtet Änderungen der videoUrl
-watch(() => props.videoUrl, () => {
+// Beobachten des Dark Mode Status und VideoURL
+watch([() => props.videoUrl, () => themeStore.isDark], () => {
   loadEmbed();
 });
 
@@ -221,9 +223,17 @@ onBeforeUnmount(() => {
   transition: all 0.3s ease;
 }
 
+:deep(.dark) .social-embed-container {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
 .social-embed-container:hover {
   transform: translateY(-4px);
   box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+}
+
+:deep(.dark) .social-embed-container:hover {
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.5);
 }
 
 /* Zusätzliche Stile für die Embeds */

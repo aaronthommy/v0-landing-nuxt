@@ -1,8 +1,8 @@
 <template>
   <div 
     :class="[
-      'relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md', 
-      bgColor || 'bg-white',
+      'relative overflow-hidden rounded-2xl shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:shadow-gray-800', 
+      bgColor || 'bg-white dark:bg-gray-800',
       sizeClasses,
       className
     ]" 
@@ -21,7 +21,7 @@
         class="font-bold mb-4" 
         :class="[
           titleClass || 'text-2xl md:text-3xl',
-          bgImage ? 'text-white' : 'text-gray-900'
+          bgImage ? 'text-white' : 'text-gray-900 dark:text-white'
         ]" 
         v-html="title"
       ></h2>
@@ -31,7 +31,7 @@
         class="mb-6" 
         :class="[
           textClass || 'text-base md:text-lg',
-          bgImage ? 'text-gray-100' : 'text-gray-600'
+          bgImage ? 'text-gray-100' : 'text-gray-600 dark:text-gray-300'
         ]"
       >
         {{ text }}
@@ -42,7 +42,7 @@
           v-if="link"
           :to="link"
           class="inline-flex items-center group"
-          :class="bgImage ? 'text-white' : 'text-blue-600'"
+          :class="bgImage ? 'text-white' : 'text-blue-600 dark:text-blue-400'"
         >
           <span>{{ linkText }}</span>
           <svg 

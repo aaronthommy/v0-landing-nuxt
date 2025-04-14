@@ -1,0 +1,62 @@
+{
+    "header": {
+      "home": "Home",
+      "about": "Über mich",
+      "offers": "Angebote",
+      "social": "Social Media"
+    },
+    "footer": {
+      "copyright": "© {year} Aaron Thommy. Alle Rechte vorbehalten.",
+      "imprint": "Impressum",
+      "privacy": "Datenschutz",
+      "contact": "Kontakt"
+    },
+    "home": {
+      "hero": {
+        "title": "Musik, die bewegt",
+        "subtitle": "Gitarre und Klavier, die Emotionen wecken"
+      },
+      "welcome": {
+        "title": "Willkommen",
+        "text": "Tauche ein in meine musikalische Welt und erfahre mehr über meine Leidenschaft für Gitarre und Klavier.",
+        "button": "Mehr erfahren"
+      },
+      "social": {
+        "title": "Social",
+        "text": "Folge mir auf TikTok, Instagram und YouTube für tägliche musikalische Inspirationen.",
+        "button": "Zu meinen Kanälen"
+      },
+      "courses": {
+        "title": "Kurse",
+        "text": "Von Anfänger bis Profi - entdecke meine Tutorials und digitalen Lerninhalte.",
+        "button": "Kurse entdecken"
+      },
+      "equipment": {
+        "title": "Equipment",
+        "text": "Meine Empfehlungen für Instrumente, Zubehör und Software für deine musikalische Reise.",
+        "button": "Zu den Empfehlungen"
+      },
+      "video": {
+        "title": "Neuestes Video",
+        "text": "Schau dir meine aktuellste Performance an.",
+        "button": "Jetzt ansehen"
+      }
+    },
+    "social": {
+      "title": "Meine Social Media Highlights",
+      "subtitle": "Entdecke meine neuesten Videos und Performances auf TikTok und Instagram.",
+      "filter": {
+        "all": "Alle",
+        "tiktok": "TikTok",
+        "instagram": "Instagram"
+      },
+      "follow": {
+        "title": "Folge mir",
+        "text": "Für mehr Inhalte und Updates folge mir auf meinen Social-Media-Kanälen"
+      }
+    },
+    "language": {
+      "de": "Deutsch",
+      "en": "Englisch"
+    }
+  }
