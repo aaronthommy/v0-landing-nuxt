@@ -5,12 +5,10 @@
       <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 dark:border-blue-400"></div>
     </div>
 
-    <!-- TikTok/Instagram Embed Container -->
+    <!-- TikTok/Instagram/YouTube Embed Container -->
     <div ref="embedContainer" class="w-full mx-auto relative min-h-[500px]">
       <!-- Der Embed-Code wird hier eingefügt -->
     </div>
-
-   
   </div>
 </template>
 
@@ -25,7 +23,7 @@ const props = defineProps({
   },
   type: {
     type: String,
-    default: 'auto' // 'auto', 'tiktok', 'instagram'
+    default: 'auto' // 'auto', 'tiktok', 'instagram', 'youtube'
   }
 });
 
@@ -36,7 +34,7 @@ const scriptAdded = ref(false);
 const embedScriptId = ref('');
 const themeStore = useThemeStore();
 
-// Ermittelt, ob es sich um TikTok oder Instagram handelt
+// Ermittelt, ob es sich um TikTok, Instagram oder YouTube handelt
 const platform = computed(() => {
   if (props.type !== 'auto') {
     return props.type;
@@ -46,9 +44,16 @@ const platform = computed(() => {
     return 'tiktok';
   } else if (props.videoUrl.includes('instagram.com')) {
     return 'instagram';
+  } else if (props.videoUrl.includes('youtube.com') || props.videoUrl.includes('youtu.be')) {
+    return 'youtube';
   } else {
     return null;
   }
+});
+
+// Überprüft, ob es sich um ein YouTube Short handelt
+const isYouTubeShort = computed(() => {
+  return props.videoUrl.includes('youtube.com/shorts/');
 });
 
 // Extrahiert die Video-ID aus der URL
@@ -68,6 +73,41 @@ const extractVideoId = (url) => {
     } else if (postMatches && postMatches[1]) {
       return postMatches[1];
     }
+    return null;
+  } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+    // YouTube URL Format kann variieren
+    // Normale Videos: https://www.youtube.com/watch?v=VIDEO_ID
+    // Shorts: https://youtube.com/shorts/VIDEO_ID
+    // Kurz-URLs: https://youtu.be/VIDEO_ID
+    
+    let videoId = null;
+    
+    // YouTube Shorts Format
+    if (url.includes('youtube.com/shorts/')) {
+      const shortsMatch = url.match(/\/shorts\/([A-Za-z0-9_-]+)/);
+      if (shortsMatch && shortsMatch[1]) {
+        videoId = shortsMatch[1];
+        // Entferne URL-Parameter falls vorhanden
+        const questionMarkIndex = videoId.indexOf('?');
+        if (questionMarkIndex !== -1) {
+          videoId = videoId.substring(0, questionMarkIndex);
+        }
+        return videoId;
+      }
+    }
+    
+    // YouTube Watch Format
+    const watchMatch = url.match(/[?&]v=([A-Za-z0-9_-]+)/);
+    if (watchMatch && watchMatch[1]) {
+      return watchMatch[1];
+    }
+    
+    // YouTube kurze URL
+    const shortMatch = url.match(/youtu\.be\/([A-Za-z0-9_-]+)/);
+    if (shortMatch && shortMatch[1]) {
+      return shortMatch[1];
+    }
+    
     return null;
   }
   return null;
@@ -181,6 +221,48 @@ const loadInstagramEmbed = (videoId) => {
   document.body.appendChild(script);
 };
 
+// Fügt YouTube Embed ein (ohne externe Skripte notwendig)
+const loadYouTubeEmbed = (videoId) => {
+  if (!embedContainer.value) return;
+  
+  // Lösche vorherigen Inhalt
+  embedContainer.value.innerHTML = '';
+  
+  // Unterschiedliches Format für YouTube Shorts (9:16) vs. normale YouTube-Videos (16:9)
+  if (isYouTubeShort.value) {
+    // Für YouTube Shorts verwenden wir ein vertikales Format (9:16 Seitenverhältnis)
+    embedContainer.value.innerHTML = `
+      <div class="youtube-shorts-container" style="margin: 0 auto; max-width: 315px;">
+        <div style="position: relative; width: 100%; padding-top: 177.78%; /* 16:9 umgekehrt für 9:16 Format */"> 
+          <iframe 
+            src="https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&controls=1"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;"
+            allowfullscreen
+            loading="lazy"
+            title="YouTube Shorts Video"
+          ></iframe>
+        </div>
+      </div>
+    `;
+  } else {
+    // Für normale YouTube-Videos verwenden wir das Standardformat (16:9 Seitenverhältnis)
+    embedContainer.value.innerHTML = `
+      <div class="responsive-iframe-container" style="position: relative; width: 100%; padding-top: 56.25%; margin: 0 auto;">
+        <iframe 
+          src="https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;"
+          allowfullscreen
+          loading="lazy"
+          title="YouTube Video"
+        ></iframe>
+      </div>
+    `;
+  }
+  
+  // YouTube-Embeds laden schneller, da kein zusätzliches Skript benötigt wird
+  loading.value = false;
+};
+
 // Lade das entsprechende Embed basierend auf der URL
 const loadEmbed = () => {
   loading.value = true;
@@ -197,6 +279,8 @@ const loadEmbed = () => {
     loadTikTokEmbed(videoId);
   } else if (platform.value === 'instagram') {
     loadInstagramEmbed(videoId);
+  } else if (platform.value === 'youtube') {
+    loadYouTubeEmbed(videoId);
   } else {
     console.error('Nicht unterstützte Plattform:', props.videoUrl);
     loading.value = false;
@@ -240,6 +324,12 @@ onBeforeUnmount(() => {
 :deep(.tiktok-embed),
 :deep(.instagram-media) {
   margin: 0 auto !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Spezifische Stile für YouTube Shorts */
+.youtube-shorts-container {
   border-radius: 8px;
   overflow: hidden;
 }

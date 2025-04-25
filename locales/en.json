@@ -1,7 +1,7 @@
 {
     "header": {
       "home": "Home",
-      "about": "About me",
+      "tabs": "Tabs",
       "offers": "Offers",
       "social": "Social Media"
     },
@@ -9,7 +9,8 @@
       "copyright": "© {year} Aaron Thommy. All rights reserved.",
       "imprint": "Imprint",
       "privacy": "Privacy Policy",
-      "contact": "Contact"
+      "contact": "Contact",
+      "about": "About"
     },
     "home": {
       "hero": {
