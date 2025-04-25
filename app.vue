@@ -12,7 +12,7 @@ useHead({
         "Aaron Thommy - Entdecke meine musikalische Welt mit Gitarre und Klavier.",
     },
   ],
-  link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+  link: [{ rel: "icon", type: "image/x-icon", href: "/aaronthommy-home-icon.ico" }],
 });
 
 const languageStore = useLanguageStore();

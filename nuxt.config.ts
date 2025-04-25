@@ -10,6 +10,29 @@ export default defineNuxtConfig({
   plugins: [
     '~/plugins/i18n.js'
   ],
-  
   css: ['~/assets/css/main.css'],
+  vite: {
+    optimizeDeps: {
+      include: ['vue', 'vue-router', 'pinia', 'swiper', 'vue-i18n']
+    },
+    build: {
+      minify: false, // Im Entwicklungsmodus nicht minifizieren
+      sourcemap: false
+    },
+    server: {
+      hmr: {
+        clientPort: 24678,
+        host: '0.0.0.0'
+      },
+      host: '0.0.0.0',
+    }
+  },
+  nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+        minify: false
+      }
+    }
+  }
 })
