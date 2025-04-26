@@ -57,7 +57,7 @@
             size="M" 
             :title="$t('home.equipment.title')" 
             :text="$t('home.equipment.text')"
-            link="/equipment"
+            link="/comingsoon"
             :linkText="$t('home.equipment.button')"
             bgColor="bg-gray-100 dark:bg-gray-800"
           >
