@@ -15,17 +15,17 @@
             <!-- Anbieter -->
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Angaben gemäß § 5 TMG</h2>
             <p class="text-gray-600 dark:text-gray-300 mb-6">
-              [Name der natürlichen oder juristischen Person]<br>
-              [Straße und Hausnummer]<br>
-              [Postleitzahl und Ort]<br>
-              [Land]
+              Aaron Thomas Hampe<br>
+              Lampestraße 03<br>
+              30449 Hannover<br>
+              Deutschland
             </p>
   
             <!-- Kontakt -->
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Kontakt</h2>
             <p class="text-gray-600 dark:text-gray-300 mb-6">
-              Telefon: [Telefonnummer]<br>
-              E-Mail: [E-Mail-Adresse]<br>
+              Telefon: xxx <br>
+              E-Mail: aaronsinstrumentals@gmail.com<br>
               Website: [Website-URL]
             </p>
   
@@ -39,8 +39,8 @@
             <!-- Verantwortlich für den Inhalt -->
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Verantwortlich für den Inhalt</h2>
             <p class="text-gray-600 dark:text-gray-300 mb-6">
-              [Name des Verantwortlichen]<br>
-              [Ggf. zusätzliche Angaben]
+              Aaron Thomas Hampe<br>
+              
             </p>
   
             <!-- EU-Streitschlichtung -->

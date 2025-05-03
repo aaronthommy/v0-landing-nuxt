@@ -94,18 +94,21 @@
         <div>
           <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-4">Bleib auf dem Laufenden</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-4">
-            Erhalte gelegentlich Updates zu neuen Angeboten, Software und besonderen Events.
+            Erhalte gelegentlich Updates zu neuen Angeboten, Software und besonderen Events. <br>
+            <b>Bald verfügbar.</b>
           </p>
           <form @submit.prevent="subscribeToNewsletter" class="space-y-2">
             <input
               type="email"
               v-model="email"
-              placeholder="Email"
+              disabled
+              placeholder="Newsletter bald verfügbar"
               class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
               required
             />
             <button
               type="submit"
+              disabled
               class="w-full bg-blue-500 dark:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors"
             >
               Subscribe

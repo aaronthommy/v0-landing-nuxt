@@ -79,12 +79,11 @@
               Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
             </p>
             <p class="text-gray-600 dark:text-gray-300 mb-6">
-              [Name/Firma]<br>
-              [Straße und Hausnummer]<br>
-              [Postleitzahl und Ort]<br>
-              [Land]<br><br>
-              Telefon: [Telefonnummer]<br>
-              E-Mail: [E-Mail-Adresse]
+              Aaron Thomas Hampe]<br>
+              Lampestraße 03<br>
+              30449 Hannover<br>
+              Deutschland<br>
+              aaronsinstrumentals@gmail.com
             </p>
   
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Speicherdauer</h3>
