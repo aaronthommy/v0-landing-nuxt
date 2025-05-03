@@ -133,9 +133,9 @@
                 <div class="ml-4">
                   <h3 class="text-lg font-medium text-gray-900 dark:text-white">Adresse</h3>
                   <p class="mt-1 text-gray-600 dark:text-gray-300">
-                    [Straße und Hausnummer]<br>
-                    [Postleitzahl und Ort]<br>
-                    [Land]
+                    Lampestraße 03<br>
+                    30449 Hannover<br>
+                    Deutschland
                   </p>
                 </div>
               </div>
@@ -150,7 +150,7 @@
                 <div class="ml-4">
                   <h3 class="text-lg font-medium text-gray-900 dark:text-white">Email</h3>
                   <p class="mt-1 text-gray-600 dark:text-gray-300">
-                    <a href="mailto:info@example.com" class="text-blue-500 dark:text-blue-400 hover:underline">info@example.com</a>
+                    <a href="mailto:info@example.com" class="text-blue-500 dark:text-blue-400 hover:underline">aaronsinstrumentals@gmail.com</a>
                   </p>
                 </div>
               </div>
@@ -174,20 +174,6 @@
                       <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                     </svg>
                   </a>
-                </div>
-              </div>
-              
-              <!-- Karte -->
-              <div class="mt-8">
-                <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-3">Standort</h3>
-                <div class="overflow-hidden rounded-lg h-64 bg-gray-200 dark:bg-gray-700">
-                  <!-- Hier kann später eine echte Google Map oder eine andere Karte eingefügt werden -->
-                  <div class="w-full h-full flex items-center justify-center">
-                    <p class="text-gray-500 dark:text-gray-400 text-center px-4">
-                      Hier wird später eine Karte angezeigt.<br>
-                      Du kannst z.B. Google Maps oder OpenStreetMap einbinden.
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
