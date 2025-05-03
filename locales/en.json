@@ -1,0 +1,63 @@
+{
+    "header": {
+      "home": "Home",
+      "tabs": "Tabs",
+      "offers": "Offers",
+      "social": "Social Media"
+    },
+    "footer": {
+      "copyright": "© {year} Aaron Thommy. All rights reserved.",
+      "imprint": "Imprint",
+      "privacy": "Privacy Policy",
+      "contact": "Contact",
+      "about": "About"
+    },
+    "home": {
+      "hero": {
+        "title": "Music that moves",
+        "subtitle": "Guitar and piano that evoke emotions"
+      },
+      "welcome": {
+        "title": "Welcome",
+        "text": "Immerse yourself in my musical world and learn more about my passion for guitar and piano.",
+        "button": "Learn more"
+      },
+      "social": {
+        "title": "Social",
+        "text": "Follow me on TikTok, Instagram and YouTube for daily musical inspirations.",
+        "button": "Check my channels"
+      },
+      "courses": {
+        "title": "Courses",
+        "text": "From beginner to professional - discover my tutorials and digital learning content.",
+        "button": "Explore courses"
+      },
+      "equipment": {
+        "title": "Equipment",
+        "text": "My recommendations for instruments, accessories and software for your musical journey.",
+        "button": "See recommendations"
+      },
+      "video": {
+        "title": "Latest Video",
+        "text": "Watch my latest performance.",
+        "button": "Watch now"
+      }
+    },
+    "social": {
+      "title": "My Social Media Highlights",
+      "subtitle": "Discover my latest videos and performances on TikTok and Instagram.",
+      "filter": {
+        "all": "All",
+        "tiktok": "TikTok",
+        "instagram": "Instagram"
+      },
+      "follow": {
+        "title": "Follow me",
+        "text": "For more content and updates, follow me on my social media channels"
+      }
+    },
+    "language": {
+      "de": "German",
+      "en": "English"
+    }
+  }
