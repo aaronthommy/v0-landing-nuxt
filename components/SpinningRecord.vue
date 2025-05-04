@@ -46,7 +46,7 @@
   /* Position variants */
   .position-right {
     right: 6%;
-    top: -22%;
+    top: -16%;
   }
   
   .position-left {
