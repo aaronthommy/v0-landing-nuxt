@@ -14,6 +14,7 @@
           <!-- Kontaktformular -->
           <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 md:p-8">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Schreib mir eine Nachricht</h2>
+            <h4>Bald verfügbar. Aktueller Kontakt: aaronsinstrumentals@gmail.com </h4>
             
             <form @submit.prevent="sendMessage" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -23,6 +24,7 @@
                   <input 
                     type="text" 
                     id="name" 
+                    disabled
                     v-model="contactForm.name" 
                     class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
                     required
@@ -33,7 +35,8 @@
                 <div>
                   <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
                   <input 
-                    type="email" 
+                    type="email"
+                    disabled 
                     id="email" 
                     v-model="contactForm.email" 
                     class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
@@ -48,6 +51,7 @@
                 <input 
                   type="text" 
                   id="subject" 
+                  disabled
                   v-model="contactForm.subject" 
                   class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors"
                   required
@@ -59,6 +63,7 @@
                 <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nachricht</label>
                 <textarea 
                   id="message" 
+                  disabled
                   v-model="contactForm.message" 
                   rows="5"
                   class="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-colors resize-none"
@@ -72,6 +77,7 @@
                   <input 
                     id="privacy" 
                     type="checkbox" 
+                    disabled
                     v-model="contactForm.privacy"
                     class="w-4 h-4 text-blue-500 border-gray-300 rounded focus:ring-blue-400"
                     required
@@ -89,7 +95,7 @@
                 <button 
                   type="submit" 
                   class="w-full bg-blue-500 dark:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg hover:bg-blue-600 dark:hover:bg-blue-500 transition-colors flex items-center justify-center"
-                  :disabled="isSubmitting"
+                  :disabled="isSubmitting" disabled
                 >
                   <span v-if="isSubmitting" class="inline-block mr-2">
                     <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
