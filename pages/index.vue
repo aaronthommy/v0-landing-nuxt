@@ -44,7 +44,7 @@
           bgColor="bg-blue-50 dark:bg-blue-900/30"
         >
           <div class="absolute top-6 right-6 opacity-20 dark:opacity-10">
-            <img src="/img/social-icon-150x150.png" alt="Social Media Icon" class="w-24 h-24" />
+            <!--<img src="/img/social-icon-150x150.png" alt="Social Media Icon" class="w-24 h-24" />-->
           </div>
         </BaseBox>
         
