@@ -95,7 +95,7 @@
           <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-4">Bleib auf dem Laufenden</h3>
           <p class="text-gray-600 dark:text-gray-300 mb-4">
             Erhalte gelegentlich Updates zu neuen Angeboten, Software und besonderen Events. <br>
-            <b>Bald verfügbar!</b>
+            <b>Bald verfügbar.</b>
           </p>
           <form @submit.prevent="subscribeToNewsletter" class="space-y-2">
             <input
