@@ -3,7 +3,7 @@
     <!-- Hero-Bereich mit großem Statement -->
     <div class="container mx-auto px-4 py-16 md:py-24">
       <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
-        aaron<span class="text-blue-500 dark:text-blue-400">thommy</span>
+        aarontest<span class="text-blue-500 dark:text-blue-400">thommy</span>
       </h1>
       <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl">
         {{ $t('home.hero.subtitle') }}
