@@ -14,7 +14,7 @@
           <!-- Kontaktformular -->
           <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 md:p-8">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Schreib mir eine Nachricht</h2>
-            <h4>Bald verfügbar. Aktueller Kontakt: aaronsinstrumentals@gmail.com </h4>
+            <h4>Bald verfügbar.<br> Aktueller Kontakt: info@aaronthommy.com</h4>
             
             <form @submit.prevent="sendMessage" class="space-y-6">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -156,7 +156,7 @@
                 <div class="ml-4">
                   <h3 class="text-lg font-medium text-gray-900 dark:text-white">Email</h3>
                   <p class="mt-1 text-gray-600 dark:text-gray-300">
-                    <a href="mailto:info@example.com" class="text-blue-500 dark:text-blue-400 hover:underline">aaronsinstrumentals@gmail.com</a>
+                    <a href="mailto:info@example.com" class="text-blue-500 dark:text-blue-400 hover:underline">info@aaronthommy.com</a>
                   </p>
                 </div>
               </div>
