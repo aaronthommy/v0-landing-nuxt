@@ -33,7 +33,7 @@
       <div v-if="featuredVideo && (activeCategory === 'all' || activeCategory === featuredVideo.category)" class="mb-16">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Featured
-          <span class="text-blue-500 dark:text-blue-400">Performance</span>
+          <span class="text-blue-500 dark:text-blue-400">Performance New</span>
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-6 items-center">
