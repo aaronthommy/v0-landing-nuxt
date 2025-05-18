@@ -28,7 +28,7 @@
           size="L" 
           :title="$t('home.welcome.title')" 
           :text="$t('home.welcome.text')"
-          link="/about"
+          link="/community"
           :linkText="$t('home.welcome.button')"
           bgColor="bg-gray-100 dark:bg-gray-800"
           class="md:col-span-2"
