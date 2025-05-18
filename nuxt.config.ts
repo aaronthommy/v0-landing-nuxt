@@ -34,5 +34,18 @@ export default defineNuxtConfig({
         minify: false
       }
     }
+  },
+  runtimeConfig: {
+    // SMTP
+    smtpHost: process.env.SMTP_HOST,
+    smtpPort: process.env.SMTP_PORT,
+    smtpSecure: process.env.SMTP_SECURE,
+    smtpUser: process.env.SMTP_USER,
+    smtpPass: process.env.SMTP_PASS,
+    contactTo: process.env.CONTACT_TO,
+
+    // reCAPTCHA
+    recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
+    public: { recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY }
   }
 })
