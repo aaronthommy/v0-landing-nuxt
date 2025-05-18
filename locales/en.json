@@ -10,7 +10,12 @@
       "imprint": "Imprint",
       "privacy": "Privacy Policy",
       "contact": "Contact",
-      "about": "About"
+      "about": "About",
+      "community": {
+        "title": "Join the Community",
+        "text": "Join my community to get exclusive content, updates and more!",
+        "button": "Go to Community"
+      }
     },
     "home": {
       "hero": {

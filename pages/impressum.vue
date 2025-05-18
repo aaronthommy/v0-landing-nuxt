@@ -24,9 +24,9 @@
             <!-- Kontakt -->
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Kontakt</h2>
             <p class="text-gray-600 dark:text-gray-300 mb-6">
-              Telefon: xxx <br>
-              E-Mail: aaronsinstrumentals@gmail.com<br>
-              Website: [Website-URL]
+              Telefon: +49 1514 2418699 <br>
+              E-Mail: info@aaronthommy.com <br>
+              Website: www.aaronthommy.com
             </p>
   
             <!-- Umsatzsteuer-ID -->
@@ -51,7 +51,7 @@
                 https://ec.europa.eu/consumers/odr/
               </a>
               <br>
-              Unsere E-Mail-Adresse finden Sie oben im Impressum.
+                Unsere E-Mail-Adresse finden Sie oben im Impressum.
             </p>
   
             <!-- Verbraucherstreitbeilegung -->

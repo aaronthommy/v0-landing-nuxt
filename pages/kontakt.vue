@@ -177,7 +177,7 @@
                 </div>
                 <div class="ml-4">
                   <h3 class="text-base font-medium text-gray-900 dark:text-white">E-Mail</h3>
-                  <p class="mt-1 text-gray-600 dark:text-gray-300">aaronsinstrumentals@gmail.com</p>
+                  <p class="mt-1 text-gray-600 dark:text-gray-300">info@aaronthommy.com</p>
                 </div>
               </div>
               
@@ -236,23 +236,23 @@
             
             <div class="space-y-6">
               <div>
-                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Bietest du Gitarren-/Klavierunterricht an?</h3>
+                <h3 class="text-lg font-medium text-gray-900 dark:text-white">Wie erreichst du deinen Guitar Ton?</h3>
                 <p class="mt-2 text-gray-600 dark:text-gray-300">
-                  Ja, ich biete sowohl Präsenz- als auch Online-Unterricht für Anfänger bis Fortgeschrittene an. Kontaktiere mich für Details zu Terminen und Preisen.
+                  Ich nehme meine Videos in Logic auf und benutze bisher ausschließlich Stock Plugins oder Amps.
                 </p>
               </div>
               
               <div>
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Wie kann ich deine Tabs erwerben?</h3>
                 <p class="mt-2 text-gray-600 dark:text-gray-300">
-                  Meine Tabs sind über den Tabs-Bereich verfügbar. Für individuelle Anfragen oder spezielle Arrangements kontaktiere mich bitte direkt.
+                  Meine Tabs sind über den Tabs-Bereich verfügbar. Für individuelle Anfragen oder spezielle Arrangements tritt meiner Community bei.
                 </p>
               </div>
               
               <div>
                 <h3 class="text-lg font-medium text-gray-900 dark:text-white">Nimmst du Auftragsarbeiten an?</h3>
                 <p class="mt-2 text-gray-600 dark:text-gray-300">
-                  Ich stehe für Kooperationen, Arrangements und andere musikalische Projekte zur Verfügung. Schreib mir deine Idee, und wir können die Details besprechen.
+                  Ich stehe für Kooperationen, Arrangements und andere musikalische Projekte zur Verfügung. Kontaktier mich einfach oder tritt meiner Community bei.
                 </p>
               </div>
             </div>

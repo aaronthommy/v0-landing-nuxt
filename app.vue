@@ -4,12 +4,12 @@ import { useLanguageStore } from "~/stores/languageStore";
 import { useThemeStore } from "~/stores/themeStore";
 
 useHead({
-  title: "Aaron Thommy - Musik, die bewegt",
+  title: "aaronthommy - guitarist, pianist & composer",
   meta: [
     {
       name: "description",
       content:
-        "Aaron Thommy - Entdecke meine musikalische Welt mit Gitarre und Klavier.",
+        "Clips, Covers, Kompositionen auf der Gitarre und dem Klavier.",
     },
   ],
   link: [{ rel: "icon", type: "image/x-icon", href: "/aaronthommy-home-icon.ico" }],
