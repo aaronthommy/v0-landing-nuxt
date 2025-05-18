@@ -15,6 +15,7 @@ on:
 
 env:
   DEPLOYMENT_FOLDER: dist
+ 
 
 jobs:
 # Please do not rename this job
@@ -36,6 +37,7 @@ jobs:
         env:
           CI: true
           SITE_URL: ${{ inputs.site-url }}
+          RECAPTCHA_SITE_KEY: '6LfCFj8rAAAAANJozQvGHFOsPYqYGV5mXoPqIxs2' 
         run: |
           npm ci
           npm run build
