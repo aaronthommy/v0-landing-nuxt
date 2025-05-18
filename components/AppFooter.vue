@@ -6,7 +6,7 @@
         <!-- Brand Section -->
         <div class="space-y-4">
           <h2 class="text-lg font-bold text-gray-900 dark:text-white">
-            aarron<span class="text-blue-500 dark:text-blue-400">thommy</span>
+            aaron<span class="text-blue-500 dark:text-blue-400">thommy</span>
           </h2>
           <p class="text-gray-600 dark:text-gray-300 pr-6">
             {{ $t('home.hero.subtitle') }}
