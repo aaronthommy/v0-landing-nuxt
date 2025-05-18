@@ -232,50 +232,48 @@ const validateForm = () => {
   return valid
 }
 
-// Form Submit
-const sendMessage = async () => {
-  if (!validateForm()) return
+const sendMessage = async (e) => {
+  if (!validateForm()) return;
 
-  isSubmitting.value = true
-  showSuccess.value = false
-  showError.value = false
-
-  let recaptchaToken = null
-  if (executeRecaptcha && recaptchaLoaded) {
-    try {
-      await recaptchaLoaded()
-      recaptchaToken = await executeRecaptcha('contact_form')
-    } catch (err) {
-      console.warn('reCAPTCHA konnte nicht ausgeführt werden:', err)
-    }
-  }
+  isSubmitting.value = true;
+  showSuccess.value = false;
+  showError.value = false;
 
   try {
-    const response = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...contactForm.value, recaptchaToken })
-    })
+    const formData = new FormData();
+    // Füge deine Formularwerte hinzu
+    formData.append('name', contactForm.value.name);
+    formData.append('email', contactForm.value.email);
+    formData.append('subject', contactForm.value.subject);
+    formData.append('message', contactForm.value.message);
 
-    const data = await response.json()
+    const response = await fetch('https://formspree.io/f/xdkgbqgd', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    const data = await response.json();
 
     if (response.ok) {
-      showSuccess.value = true
-      successMessage.value = data.message || successMessage.value
-      contactForm.value = { name: '', email: '', subject: '', message: '', privacy: false }
+      showSuccess.value = true;
+      successMessage.value = "Vielen Dank für deine Nachricht! Ich werde mich schnellstmöglich bei dir melden.";
+      contactForm.value = { name: '', email: '', subject: '', message: '', privacy: false };
     } else {
-      showError.value = true
-      errorMessage.value = data.statusMessage || errorMessage.value
+      showError.value = true;
+      errorMessage.value = data.error || "Ein Fehler ist aufgetreten. Bitte versuche es später noch einmal.";
     }
   } catch (err) {
-    console.error('Fehler beim Senden des Formulars:', err)
-    showError.value = true
-    errorMessage.value = 'Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Internetverbindung.'
+    console.error('Fehler beim Senden des Formulars:', err);
+    showError.value = true;
+    errorMessage.value = "Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Internetverbindung.";
   } finally {
-    isSubmitting.value = false
-    if (showSuccess.value) setTimeout(() => (showSuccess.value = false), 5000)
+    isSubmitting.value = false;
+    if (showSuccess.value) setTimeout(() => (showSuccess.value = false), 5000);
   }
-}
+};
 
 onMounted(() => {
   themeStore.initTheme()
