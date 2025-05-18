@@ -12,7 +12,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Kontaktformular -->
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6 md:p-8">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Schreib mir ne Nachricht</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Schreib mir eine Nachricht</h2>
 
           <form @submit.prevent="sendMessage" class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
